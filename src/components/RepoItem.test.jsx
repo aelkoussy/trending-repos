@@ -13,7 +13,7 @@ describe("<RepoItem />", () => {
 
   it("Given name prop it shows a name title", () => {
     const wrapper = shallow(<RepoItem name="My awesome repo" />);
-    expect(wrapper.contains(<h1>My awesome repo</h1>)).toBe(true);
+    expect(wrapper.contains(<h2>My awesome repo</h2>)).toBe(true);
   });
   it("Given description prop it shows a description", () => {
     const wrapper = shallow(<RepoItem description="Some nice description" />);
@@ -23,9 +23,17 @@ describe("<RepoItem />", () => {
     const wrapper = shallow(<RepoItem stars={12345} />);
     expect(wrapper.contains(<h4>12345 stars</h4>)).toBe(true);
   });
-  it("Given githubLink prop it shows a link", () => {
+  it("Given a name and a githubLink prop it shows a name and a link", () => {
     const testLink = "https://github.com/testing-library/react-testing-library";
-    const wrapper = shallow(<RepoItem githubLink={testLink} />);
-    expect(wrapper.contains(<a href={testLink}>github link</a>)).toBe(true);
+    const wrapper = shallow(
+      <RepoItem githubLink={testLink} name="test name" />
+    );
+    expect(
+      wrapper.contains(
+        <a href={testLink}>
+          <h2>test name</h2>
+        </a>
+      )
+    ).toBe(true);
   });
 });
