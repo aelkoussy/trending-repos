@@ -1,10 +1,12 @@
 import React from "react";
 import "./App.css";
+import { ListOfRepos } from "./containers/ListOfRepos";
 
 function App() {
   return (
     <div className="App">
-      <p>List of most popular repositories for the last week</p>
+      <h2>List of most popular repositories for the last week</h2>
+      <ListOfRepos />
     </div>
   );
 }

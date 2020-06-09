@@ -1,9 +1,13 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import { configure, mount } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import React from "react";
+import App from "./App";
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+configure({ adapter: new Adapter() });
+
+describe("<App />", () => {
+  it("should render <App /> ", () => {
+    const wrapper = mount(<App />);
+    expect(wrapper.find(App)).toHaveLength(1);
+  });
 });
