@@ -25,7 +25,7 @@ export const StarBtn = ({ objectID }) => {
         }
       }}
     >
-      <Star style={{ color: selected ? "Yellow" : "grey" }} />
+      <Star style={{ color: selected ? "Orange" : "grey" }} />
     </ToggleButton>
   );
 };
