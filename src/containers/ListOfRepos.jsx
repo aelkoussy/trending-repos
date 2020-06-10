@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { RepoItem } from "../components/RepoItem";
+import { FormControlLabel } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { RepoItem } from "../components/RepoItem";
 
 export const ListOfRepos = () => {
   const [allRepos, setAllRepos] = useState([]);
@@ -9,7 +10,7 @@ export const ListOfRepos = () => {
   const [showStarredOnly, setShowStarredOnly] = useState(false);
 
   useEffect(() => {
-    const dateOfOneWeekAgoUTC = getOneWeekAgoDate();
+    const dateOfOneWeekAgoUTC = getOneWeekAgoISODate();
 
     // possible improvements here to keep all the params as variables and allow changing them for the user
     // get the list of repos from GitHub api
@@ -39,7 +40,7 @@ export const ListOfRepos = () => {
     }
   };
 
-  const getOneWeekAgoDate = () => {
+  const getOneWeekAgoISODate = () => {
     //Get today's date using the JavaScript Date object.
     var ourDate = new Date();
     //Change it so that it is 7 days in the past.
@@ -51,16 +52,20 @@ export const ListOfRepos = () => {
 
   return (
     <div>
-      {/* TODO make this a label for the checkbox */}
-      <p>Show only starred repos</p>
-      <Checkbox
-        checked={showStarredOnly}
-        onChange={handleChange}
-        inputProps={{
-          "aria-label": "primary checkbox",
-          title: "show only starred repos",
-        }}
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={showStarredOnly}
+            onChange={handleChange}
+            inputProps={{
+              "aria-label": "primary checkbox",
+              title: "show only starred repos",
+            }}
+          />
+        }
+        label="Show only starred repos"
       />
+
       {reposToShow.map((repo) => (
         <RepoItem
           name={repo.name}
