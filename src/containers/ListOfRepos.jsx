@@ -34,6 +34,7 @@ export const ListOfRepos = () => {
           description={repo.description}
           stars={repo.stargazers_count}
           key={repo.id}
+          objectId={repo.id}
         />
       ))}
     </div>
