@@ -7,7 +7,7 @@ export const RepoItem = ({
   githubLink,
   description,
   stars,
-  id: objectID,
+  objectID,
 }) => {
   return (
     <Card variant="outlined">
