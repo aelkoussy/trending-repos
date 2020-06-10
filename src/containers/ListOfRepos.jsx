@@ -3,6 +3,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { RepoItem } from "../components/RepoItem";
+import { getOneWeekAgoISODate } from "../helpers/helpers";
 
 export const ListOfRepos = () => {
   const [allRepos, setAllRepos] = useState([]);
@@ -38,16 +39,6 @@ export const ListOfRepos = () => {
     } else {
       setReposToShow(allRepos);
     }
-  };
-
-  const getOneWeekAgoISODate = () => {
-    //Get today's date using the JavaScript Date object.
-    var ourDate = new Date();
-    //Change it so that it is 7 days in the past.
-    var dateOfOneWeekAgo = ourDate.getDate() - 7;
-    ourDate.setDate(dateOfOneWeekAgo);
-    const dateOfOneWeekAgoUTC = ourDate.toISOString().split("T")[0];
-    return dateOfOneWeekAgoUTC;
   };
 
   return (
