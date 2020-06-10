@@ -4,7 +4,9 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 
 // Material toggle btn used with a star icon, given objectID to save it as starred
 export const StarBtn = ({ objectID }) => {
-  const [selected, setSelected] = useState(false);
+  var starredItems = JSON.parse(localStorage.getItem("starred")) || [];
+  const isItemSaved = starredItems && starredItems.indexOf(objectID) !== -1;
+  const [selected, setSelected] = useState(isItemSaved);
 
   return (
     <ToggleButton
@@ -13,10 +15,6 @@ export const StarBtn = ({ objectID }) => {
       onChange={() => {
         // here the next state is !selected
         setSelected(!selected);
-        var starredItems = JSON.parse(localStorage.getItem("starred")) || [];
-
-        const isItemSaved =
-          starredItems && starredItems.indexOf(objectID) !== -1;
 
         if (!selected && !isItemSaved) {
           starredItems = starredItems.concat(objectID);
