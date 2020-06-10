@@ -11,16 +11,19 @@ export const StarBtn = ({ objectID }) => {
       value="check"
       selected={selected}
       onChange={() => {
+        // here the next state is !selected
         setSelected(!selected);
-        var starredItems = localStorage.getItem("starred");
-        const isItemSaved = starredItems.indexOf(objectID) === -1;
+        var starredItems = JSON.parse(localStorage.getItem("starred")) || [];
 
-        if (selected && !isItemSaved) {
-          starredItems = starredItems.push(objectID);
-          localStorage.setItem("starred", starredItems);
+        const isItemSaved =
+          starredItems && starredItems.indexOf(objectID) !== -1;
+
+        if (!selected && !isItemSaved) {
+          starredItems = starredItems.concat(objectID);
+          localStorage.setItem("starred", JSON.stringify(starredItems));
         } else {
           starredItems = starredItems.filter((item) => item !== objectID);
-          localStorage.setItem("starred", starredItems);
+          localStorage.setItem("starred", JSON.stringify(starredItems));
         }
       }}
     >
